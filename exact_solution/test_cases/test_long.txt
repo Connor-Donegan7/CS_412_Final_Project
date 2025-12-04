@@ -1,4 +1,4 @@
-27
+27 48
 H B 7
 I B 8
 J C 9
@@ -17,12 +17,33 @@ V F 21
 W F 22
 X F 23
 Y F 24
-Z G 25 ZZ 1
-ZZ Z 1
-A B 1 C 2 D 3 E 4
-B A 1 F 5 G 6 H 7 I 8
-C A 2 J 9 K 10 L 11 M 12
-D A 3 N 13 O 14 P 15 Q 16
-E A 4 R 17 S 18 T 19 U 20
-F B 5 V 21 W 22 X 23 Y 24
-G B 6 Z 25
+Z G 25 
+Z ZZ 1
+A B 1
+A C 2 
+A D 3 
+A E 4
+B F 5
+B G 6
+B H 7
+B I 8
+C J 9
+C K 10
+C L 11
+C M 12
+D N 13
+D O 14
+D P 15
+D Q 16
+E R 17
+E S 18
+E T 19
+E U 20
+F V 21
+F W 22
+F X 23
+F Y 24
+G V 21
+G W 22
+G X 23
+G Y 24

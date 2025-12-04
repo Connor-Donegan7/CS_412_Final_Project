@@ -84,34 +84,38 @@ def find_shortest_path(dict):
 
 # Sets stuff up, doesn't matter.
 def main():
-    num_of_verts = int(input())
-    graph_dict = {}
+    nums = input().split()
+    vert_count = int(nums[0])
+    edge_count = int(nums[1])
 
-    for verts in range(num_of_verts):
-        line = input().split()
-        vert = line[0]
+    vert_dict = {}
 
-        neighbor_arr = []
-        for i in range(1, len(line) - 1, 2):
-            neighbor_arr.append((line[i], line[i + 1]))
+    for _ in range(edge_count):
+        edge = input().split()
+        if vert_dict.get(edge[0]) != None:
+            vert_dict[edge[0]].append((edge[1], edge[2]))
+        else:
+            vert_dict[edge[0]] = [(edge[1], edge[2])]
+        
+        if vert_dict.get(edge[1]) != None:
+            vert_dict[edge[1]].append((edge[0], edge[2]))
+        else:
+            vert_dict[edge[1]] = [(edge[0], edge[2])]
 
-        graph_dict[vert] = neighbor_arr
-    
-    
-    best_solution = find_shortest_path(graph_dict)
+
+    best_solution = find_shortest_path(vert_dict)
 
     clean_path = ""
     clean_path += best_solution[0]
 
     for i in range(1, len(best_solution)):
-        clean_path += " -> " + best_solution[i][0]
+        clean_path += " " + best_solution[i][0]
 
     sum = path_sum(best_solution)
 
-
-    print("Path:")
+    print(f"{sum:.4f}")
     print(clean_path)
-    print(f"\nCost: {sum}")
+
 
 if __name__ == '__main__':
     main()

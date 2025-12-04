@@ -35,19 +35,19 @@ INPUT FORMAT
 ------------
 The script uses interactive input with two stages:
 
-1. First line: "n" (one space-separated integer)
-    - n: Number of featured verticies.
+1. First line: "n m" (two space-separated integers)
+   - n: number of nodes in the graph
+   - m: number of edges in the graph
    
-   Example: 4
+   Example: 4 6
    
-2. Next n lines: vertex descriptions
-   For each vertex, enter: NEIGHBOR WEIGHT NEIGHBOR WEIGHT NEIGHBOR ...
+2. Next m lines: edge definitions
+   For each edge, enter: NODE1 NODE2 WEIGHT
    
    Where:
-   - NEIGHBOR: A neighboring edge (ex. B)
-   - WEIGHT: The edge cost connecting vertex and neighbor (ex. 10)
-   - Direction: Edges are bidirectional, but vertex definitions must reciprocate.
-        If vertex A claims B, B must claim A.
+   - NODE1, NODE2: Node identifiers (any string without spaces, e.g., A, B, city_1)
+   - WEIGHT: Edge cost (integer or float, e.g., 10, 3.5)
+   - Direction: Edges are bidirectional; entering "A B 10" also creates "B A 10"
 
 EXAMPLE SESSION
 ---------------
@@ -55,17 +55,18 @@ Command:
     python cs412_tsp_exact.py
 
 Input:
-    5
-    A B 1 C 5
-    B A 1 C 6 E 2
-    C A 5 B 6 D 4
-    D C 4 E 3
-    E B 2 D 3
+    5 6
+    A B 1
+    A C 5
+    B C 6
+    B E 2
+    E D 3
+    C D 4
+
 
 Output:
-    Path:
-    A -> C -> D -> E -> B -> A
-    Cost: 15
+    15.0000
+    A C D E B A
 
 Explanation:
   - First output (A -> C -> D -> E -> B -> A): Order of complete traversal.
@@ -111,8 +112,8 @@ Graph Structure Issues:
 
 GRAPH REQUIREMENTS
 ------------------
-• Forced Undirection: Edges must be explicitly made bidirectional.
-  Entering "A B 10" only accounts for vertex A, "B A 10" is also required.
+• Undirected: Edges are treated as bidirectional.
+  Entering "A B 10" creates both A→B and B→A edges with the same weight.
   
 • Connected: All nodes must be reachable from the starting node.
   If the graph is disconnected, the algorithm will run indefinitely.
@@ -124,33 +125,31 @@ TESTING
 -------
 Try this simple complete graph:
 
-    6
-    A B 1 C 2 D 3 E 4 F 5
-    B A 1
-    C A 2
-    D A 3
-    E A 4
-    F A 5
+    6 5
+    A B 1
+    A C 2
+    A D 3
+    A E 4
+    A F 5
+
 
 
 Expected output:
-    Path:
-    A -> F -> A -> E -> A -> D -> A -> C -> A -> B -> A
-    Cost: 30
+    30.0000
+    A F A E A D A C A B A
 
 (Goes from A to an extremity, back; total cost 15 * 2 = 30)
 
 Try one a little more complecated:
-
-    5
-    A B 1 C 5
-    B A 1 C 6 E 2
-    C A 5 B 6 D 4
-    D C 4 E 3
-    E B 2 D 3
+    5 6
+    A B 1
+    A C 5
+    B C 6
+    B E 2
+    E D 3
+    C D 4
 
 Expected output:
-    Path:
-    A -> C -> D -> E -> B -> A
-    Cost: 15
+    15.0000
+    A C D E B A
 
