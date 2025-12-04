@@ -12,6 +12,12 @@ The program takes an undirected, weighted graph, and produces the following:
 1. The nodes which should be traversed (in order)
 2. The total cost of the traversal.
 
+WHY THIS IS IMPORTANT
+---------------------
+- People put things up, place them down, and do it all over again.
+    From unloading a dishwasher, to flying passengers around the world (airline route planning),
+    we see instances of this problem all the time.
+
 REQUIREMENTS
 ------------
 - Python 3.7 or later
